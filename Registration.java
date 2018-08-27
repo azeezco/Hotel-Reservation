@@ -5,19 +5,45 @@
  */
 package booking;
 
+
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author user
  */
 public class Registration extends javax.swing.JFrame {
-
+     
+    
+    public JFrame Home;
+    public Boolean numberValidation1(String num1){
+        
+        return num1.charAt(0)=='0' && (num1.charAt(1)=='7' || num1.charAt(1)=='8' || num1.charAt(1)=='9') && num1.length()==11 && num1.matches("[0-9]+"); 
+    }
+    public Boolean numberValidation2(String num2){
+        
+        return num2.charAt(0)=='0' && (num2.charAt(1)=='7' || num2.charAt(1)=='8' || num2.charAt(1)=='9') && num2.length()==11 && num2.matches("[0-9]+"); 
+    }
     /**
      * Creates new form Registration
      */
     public Registration() {
+        
         initComponents();
+        setIcon();
+            
     }
-
+       public Registration(JFrame home) {
+        Home=home;
+        initComponents();
+        setIcon();
+            
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,20 +66,25 @@ public class Registration extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         Nextbtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         Cancelbtn = new javax.swing.JButton();
+        phone_no = new javax.swing.JTextField();
+        kinNo = new javax.swing.JTextField();
+        fullname = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
+        kin = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Akma Signatures Hotel");
+        setLocation(new java.awt.Point(0, 0));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 162, 232));
@@ -68,33 +99,34 @@ public class Registration extends javax.swing.JFrame {
         jLabel2.setText("FULLNAME");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, 20));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 410, 20));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 590, 10));
 
         jLabel3.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 162, 232));
         jLabel3.setText("PHONE NUMBER");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 410, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 590, 10));
 
         jLabel4.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 162, 232));
         jLabel4.setText("ADDRESS");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 410, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 590, 10));
 
         jLabel5.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 162, 232));
         jLabel5.setText("NEXT OF KIN");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 410, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 590, 10));
 
         jLabel6.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 162, 232));
         jLabel6.setText("PHONE NUMBER OF NEXT OF KIN");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 230, 20));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 410, 10));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 590, 10));
 
         Nextbtn.setBackground(new java.awt.Color(0, 162, 232));
+        Nextbtn.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         Nextbtn.setForeground(new java.awt.Color(255, 255, 255));
         Nextbtn.setText("Next");
         Nextbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -102,27 +134,10 @@ public class Registration extends javax.swing.JFrame {
                 NextbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(Nextbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 70, -1));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/bulb1.png"))); // NOI18N
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, -1));
-
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
-        jScrollPane1.setFont(new java.awt.Font("Dotum", 2, 12)); // NOI18N
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(24, 26, 28));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Dotum", 2, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 209, 92));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("   Akma Signatures won\n   the award of\n excellence service in\n    hospitality in 2017.");
-        jTextArea1.setBorder(null);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 180, 110));
+        jPanel2.add(Nextbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 411, 70, 30));
 
         Cancelbtn.setBackground(new java.awt.Color(0, 162, 232));
+        Cancelbtn.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         Cancelbtn.setForeground(new java.awt.Color(255, 255, 255));
         Cancelbtn.setText("Cancel");
         Cancelbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -130,59 +145,67 @@ public class Registration extends javax.swing.JFrame {
                 CancelbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(Cancelbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 70, -1));
+        jPanel2.add(Cancelbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 410, -1, -1));
 
+        phone_no.setBackground(new java.awt.Color(24, 26, 28));
+        phone_no.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        phone_no.setForeground(new java.awt.Color(255, 255, 255));
+        phone_no.setBorder(null);
+        jPanel2.add(phone_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 420, 40));
+
+        kinNo.setBackground(new java.awt.Color(24, 26, 28));
+        kinNo.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        kinNo.setForeground(new java.awt.Color(255, 255, 255));
+        kinNo.setBorder(null);
+        jPanel2.add(kinNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 460, 40));
+
+        fullname.setBackground(new java.awt.Color(24, 26, 28));
+        fullname.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        fullname.setForeground(new java.awt.Color(255, 255, 255));
+        fullname.setBorder(null);
+        fullname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fullnameFocusGained(evt);
+            }
+        });
+        jPanel2.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 560, 40));
+
+        address.setBackground(new java.awt.Color(24, 26, 28));
+        address.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        address.setForeground(new java.awt.Color(255, 255, 255));
+        address.setBorder(null);
+        jPanel2.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 560, 40));
+
+        kin.setBackground(new java.awt.Color(24, 26, 28));
+        kin.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        kin.setForeground(new java.awt.Color(255, 255, 255));
+        kin.setBorder(null);
+        jPanel2.add(kin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 560, 40));
+
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(24, 26, 28));
-        jTextField1.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Dotum", 2, 12)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("(08*********)");
         jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 390, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 100, 30));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(24, 26, 28));
-        jTextField2.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField2.setFont(new java.awt.Font("Dotum", 2, 12)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("(08*********)");
         jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 390, 30));
-
-        jTextField3.setBackground(new java.awt.Color(24, 26, 28));
-        jTextField3.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 390, 30));
-
-        jTextField4.setBackground(new java.awt.Color(24, 26, 28));
-        jTextField4.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 390, 30));
-
-        jTextField5.setBackground(new java.awt.Color(24, 26, 28));
-        jTextField5.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 390, 30));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 100, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 670, 470));
 
         jLabel1.setFont(new java.awt.Font("Dotum", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(24, 26, 28));
-        jLabel1.setText("1/3   Register");
+        jLabel1.setText("1/4   Register");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 40));
-
-        jPanel3.setBackground(new java.awt.Color(0, 162, 232));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 670, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 650));
 
@@ -190,18 +213,52 @@ public class Registration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NextbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextbtnActionPerformed
-      //  TODO add your handling code here:
-        Bookings book=new Bookings();
-       book.setVisible(true);
-       dispose();
+       
+        String name=fullname.getText();
+        String num=phone_no.getText();
+        
+        String Address=address.getText();
+        String nextkin=kin.getText();
+        String nextkinNo=kinNo.getText();
+    try {
+        if((numberValidation1(num))&&(numberValidation2(nextkinNo))){
+            
+             Bookings book=new Bookings(name,num,Address,nextkin,nextkinNo,this);
+             
+             book.setLocationRelativeTo(null);
+             book.setVisible(true);
+             this.setVisible(false);
+        }else {
+            if(!numberValidation1(num))
+            JOptionPane.showMessageDialog(null, "Invalid Phone number");
+            if(!numberValidation2(nextkinNo))
+            JOptionPane.showMessageDialog(null, "Invalid Next of kin number");
+    }
+    }catch(StringIndexOutOfBoundsException e){
+        JOptionPane.showMessageDialog(null, "Please fill all fields");
+        
+    }    
+        
+       
     }//GEN-LAST:event_NextbtnActionPerformed
 
+    
     private void CancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelbtnActionPerformed
         // TODO add your handling code here:
-      Home Home=new Home();
-      Home.setVisible(true);
-      dispose();
+     // Home Home=new Home();
+     // Home.setLocationRelativeTo(null);
+     // Home.setVisible(true);
+    
+      this.setVisible(false);
     }//GEN-LAST:event_CancelbtnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+     //  err.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void fullnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fullnameFocusGained
+      
+    }//GEN-LAST:event_fullnameFocusGained
 
     /**
      * @param args the command line arguments
@@ -233,8 +290,7 @@ public class Registration extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Registration reg=new Registration();
-                reg.setVisible(true);
+                new Registration().setVisible(true);
             }
         });
     }
@@ -242,27 +298,29 @@ public class Registration extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelbtn;
     private javax.swing.JButton Nextbtn;
+    private javax.swing.JTextField address;
+    private javax.swing.JTextField fullname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField kin;
+    private javax.swing.JTextField kinNo;
+    private javax.swing.JTextField phone_no;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("akmaicon.png")));
+    }
 }

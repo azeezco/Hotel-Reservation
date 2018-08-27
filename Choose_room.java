@@ -5,19 +5,70 @@
  */
 package booking;
 
+import java.awt.Toolkit;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class Choose_room extends javax.swing.JFrame {
-
+    String name;
+   String num;
+    String Address;
+    String nextkin;
+    String nextkinNo;
+    Date Checkin;
+    Date Checkout;
+    String Adults;
+    String Children;
+    String roomType;
+    double Rate;
+    double days;
+    JFrame Bookings;
+  
+ 
+ 
     /**
      * Creates new form Choose_room
      */
     public Choose_room() {
         initComponents();
+        setIcon();
     }
-
+    public Choose_room(String name2,String number2,String Address2,String kin2,String kinNo2,Date Checkin1,
+                        Date Checkout1,String Adults1,String Children1,JFrame Bookings1){
+        name=name2;
+        num=number2;
+        Address=Address2;
+        nextkin=kin2;
+        nextkinNo=kinNo2;
+        Checkin=Checkin1;
+        Checkout=Checkout1;
+        Adults=Adults1;
+        Children=Children1;
+        Bookings=Bookings1;
+        initComponents();
+        setIcon();
+    }
+    public Choose_room(String name22,String number22,String Address22,String kin22,String kinNo22,Date Checkin11,
+                        Date Checkout11,String Adults11,String Children11,String roomtype1,double Rate1,double days1){
+        name=name22;
+        num=number22;
+        Address=Address22;
+        nextkin=kin22;
+        nextkinNo=kinNo22;
+        Checkin=Checkin11;
+        Checkout=Checkout11;
+        Adults=Adults11;
+        Children=Children11;
+        Rate=Rate1;
+        days=days1;
+        initComponents();
+        setIcon();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,15 +83,28 @@ public class Choose_room extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        signature = new javax.swing.JButton();
+        standard = new javax.swing.JButton();
+        double_ = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
+        family = new javax.swing.JButton();
+        Next = new javax.swing.JButton();
+        standard_room = new javax.swing.JRadioButton();
+        double_room = new javax.swing.JRadioButton();
+        family_suite = new javax.swing.JRadioButton();
+        signature_suite = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Akma Signatures Hotel");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 162, 232));
@@ -50,62 +114,108 @@ public class Choose_room extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/booking/rooms/Double room.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/Double room.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 300, 170));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/booking/rooms/Family suite.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/Family suite.jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 270, 190));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/booking/rooms/Standard room.jpg"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 270, 180));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/booking/rooms/Signature suite.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/Signature suite.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 280, 190));
 
-        jButton1.setBackground(new java.awt.Color(0, 162, 232));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(24, 26, 28));
-        jButton1.setText("<html>Signature Suite     =   <span>&#8358;</span>18,000</html>");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 51), null));
-        roomSelected.add(jButton1);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 250, 34));
-
-        jButton2.setBackground(new java.awt.Color(0, 162, 232));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(24, 26, 28));
-        jButton2.setText("<html>Stanadrd Room     =   <span>&#8358;</span>10,000</html>");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 51), null));
-        roomSelected.add(jButton2);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        signature.setBackground(new java.awt.Color(0, 162, 232));
+        signature.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        signature.setForeground(new java.awt.Color(24, 26, 28));
+        signature.setText("<html>Signature Suite     =   <span>&#8358;</span>18,000</html>");
+        signature.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signatureMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 226, 250, 34));
+        jPanel1.add(signature, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 490, -1, 34));
 
-        jButton3.setBackground(new java.awt.Color(0, 162, 232));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(24, 26, 28));
-        jButton3.setText("<html>Double Room     =   <span>&#8358;</span>15,000</html>");
-        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 51), null));
-        roomSelected.add(jButton3);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 250, 34));
+        standard.setBackground(new java.awt.Color(0, 162, 232));
+        standard.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        standard.setForeground(new java.awt.Color(24, 26, 28));
+        standard.setText("<html>Stanadrd Room = <span>&#8358;</span>10,000</html>");
+        standard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                standardMouseClicked(evt);
+            }
+        });
+        standard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standardActionPerformed(evt);
+            }
+        });
+        jPanel1.add(standard, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 260, 34));
 
-        jButton4.setBackground(new java.awt.Color(0, 162, 232));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(24, 26, 28));
-        jButton4.setText("<html>Family Suite     =   <span>&#8358;</span>25,000</html>");
-        jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 51), null));
-        roomSelected.add(jButton4);
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 250, 34));
+        double_.setBackground(new java.awt.Color(0, 162, 232));
+        double_.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        double_.setForeground(new java.awt.Color(24, 26, 28));
+        double_.setText("<html>Double Room     =   <span>&#8358;</span>15,000</html>");
+        double_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                double_MouseClicked(evt);
+            }
+        });
+        jPanel1.add(double_, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 250, 34));
+
+        Back.setBackground(new java.awt.Color(0, 162, 232));
+        Back.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        Back.setForeground(new java.awt.Color(255, 255, 255));
+        Back.setText("Back");
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, -1, -1));
+
+        family.setBackground(new java.awt.Color(0, 162, 232));
+        family.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        family.setForeground(new java.awt.Color(24, 26, 28));
+        family.setText("<html>Family Suite     =   <span>&#8358;</span>25,000</html>");
+        family.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                familyMouseClicked(evt);
+            }
+        });
+        jPanel1.add(family, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 250, 34));
+
+        Next.setBackground(new java.awt.Color(0, 162, 232));
+        Next.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        Next.setForeground(new java.awt.Color(255, 255, 255));
+        Next.setText("Next");
+        Next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NextMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Next, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 560, -1, -1));
+
+        roomSelected.add(standard_room);
+        jPanel1.add(standard_room, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 258, 0, 0));
+
+        roomSelected.add(double_room);
+        jPanel1.add(double_room, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 258, 10, 0));
+
+        roomSelected.add(family_suite);
+        jPanel1.add(family_suite, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 518, 30, 0));
+
+        roomSelected.add(signature_suite);
+        jPanel1.add(signature_suite, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 518, 30, 0));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/Standard room.jpg"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 280, 170));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 810, 610));
 
         jLabel1.setBackground(new java.awt.Color(0, 162, 232));
         jLabel1.setFont(new java.awt.Font("Dotum", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("3/3  Choose Room");
+        jLabel1.setText("3/4  Choose Room");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 210, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 720));
@@ -113,9 +223,86 @@ public class Choose_room extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void standardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_standardActionPerformed
+
+    private void NextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NextMouseClicked
+     try{
+        if(!standard_room.isSelected() && !double_room.isSelected() && !family_suite.isSelected()
+                                    && !signature_suite.isSelected()){
+      JOptionPane.showMessageDialog(null, "Please select a room");
+      }else{
+        String roomType="";
+       double Rate=0.00;
+       if(standard_room.isSelected()){
+           roomType="Standard Room";
+           Rate=10000.00;
+       }else if(double_room.isSelected()){
+           roomType="Double Room";
+           Rate=15000.00;
+       }else if(family_suite.isSelected()){
+           roomType="Family Suite";
+           Rate=25000.00;
+       }else if(signature_suite.isSelected()){
+           roomType="Signature Suite";
+           Rate=18000.00;
+       }
+        summary summary=new summary(name,num,Address,nextkin,nextkinNo,Checkin,Checkout,Adults,Children,roomType,Rate,this);
+        summary.setLocationRelativeTo(null);
+        
+        summary.setVisible(true);
+       this.setVisible(false);
+      }
+     }catch(Exception e){}
+    }//GEN-LAST:event_NextMouseClicked
+
+    private void standardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_standardMouseClicked
+        // TODO add your handling code here:
+         standard.setBackground(new java.awt.Color(225, 11, 11));
+         signature.setBackground(new java.awt.Color(0,162,232));
+         double_.setBackground(new java.awt.Color(0,162,232));
+         family.setBackground(new java.awt.Color(0,162,232));
+         standard_room.setSelected(true);
+         
+    }//GEN-LAST:event_standardMouseClicked
+
+    private void double_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_double_MouseClicked
+
+        standard.setBackground(new java.awt.Color(0,162,232));
+         signature.setBackground(new java.awt.Color(0,162,232));
+         double_.setBackground(new java.awt.Color(225, 11, 11));
+         family.setBackground(new java.awt.Color(0,162,232));
+         double_room.setSelected(true);
+          
+    }//GEN-LAST:event_double_MouseClicked
+
+    private void familyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_familyMouseClicked
+         standard.setBackground(new java.awt.Color(0,162,232));
+         signature.setBackground(new java.awt.Color(0,162,232));
+         double_.setBackground(new java.awt.Color(0,162,232));
+         family.setBackground(new java.awt.Color(225, 11, 11));
+         family_suite.setSelected(true);
+        
+    }//GEN-LAST:event_familyMouseClicked
+
+    private void signatureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signatureMouseClicked
+        standard.setBackground(new java.awt.Color(0,162,232));
+         signature.setBackground(new java.awt.Color(225, 11, 11));
+         double_.setBackground(new java.awt.Color(0,162,232));
+         family.setBackground(new java.awt.Color(0,162,232));
+         signature_suite.setSelected(true);
+        
+    }//GEN-LAST:event_signatureMouseClicked
+
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+      Bookings.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_BackMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -145,6 +332,7 @@ public class Choose_room extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Choose_room().setVisible(true);
@@ -153,17 +341,27 @@ public class Choose_room extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton Back;
+    private javax.swing.JButton Next;
+    private javax.swing.JButton double_;
+    private javax.swing.JRadioButton double_room;
+    private javax.swing.JButton family;
+    private javax.swing.JRadioButton family_suite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.ButtonGroup roomSelected;
+    private javax.swing.JButton signature;
+    private javax.swing.JRadioButton signature_suite;
+    private javax.swing.JButton standard;
+    private javax.swing.JRadioButton standard_room;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("akmaicon.png")));
+    }
 }

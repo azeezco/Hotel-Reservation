@@ -5,6 +5,14 @@
  */
 package booking;
 
+import java.awt.Toolkit;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,14 +20,69 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class Bookings extends javax.swing.JFrame {
+    String name;
+    String  num;
+    String Address;
+    String nextkin;
+    String nextkinNo;
+    public Date checkin;
+    public Date checkout;
+    public String Adults;
+    public String Children;
+    public JFrame Registration;
 
+    Bookings(Registration aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public boolean checkinValidation(String check){
+        DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+        checkin=null;
+       df.setLenient(false);
+       
+       try
+       {
+           checkin=df.parse(check);
+           
+           return true;
+          
+       }
+       catch(Exception e){
+           return false;
+       }
+    }
+     public boolean checkoutValidation(String check){
+        DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+        checkout=null;
+       df.setLenient(false);
+       
+       try
+       {
+           checkout=df.parse(check);
+          
+           return true;
+       }
+       catch(Exception e){
+           return false;
+       }
+    }
     /**
      * Creates new form Bookings
      */
     public Bookings() {
         initComponents();
+        setIcon();
     }
-
+     public Bookings(String name1,String number1,String Address1,String kin1,String kinNo1, JFrame Registration1 ){
+        name=name1;
+        num=number1;
+        Address=Address1;
+        nextkin=kin1;
+        nextkinNo=kinNo1;
+        Registration=Registration1;
+        initComponents();
+        setIcon();
+    }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,18 +101,27 @@ public class Bookings extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         subOne = new javax.swing.JButton();
-        Adults = new javax.swing.JTextField();
+        adults = new javax.swing.JTextField();
         addOne = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         subOne1 = new javax.swing.JButton();
         addOne1 = new javax.swing.JButton();
-        Children = new javax.swing.JTextField();
+        children = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        checkin = new org.jdesktop.swingx.JXDatePicker();
-        checkout = new org.jdesktop.swingx.JXDatePicker();
+        checkIN = new javax.swing.JTextField();
+        checkOUT = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Akma Signatures Hotel");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 162, 232));
@@ -81,23 +153,23 @@ public class Bookings extends javax.swing.JFrame {
         });
         jPanel2.add(Next, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/check-in11.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/check-in.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(24, 26, 28));
         jLabel2.setFont(new java.awt.Font("Dotum", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CHECK-OUT");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/check-out11.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/check-out.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(24, 26, 28));
         jLabel4.setFont(new java.awt.Font("Dotum", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CHECK-IN");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         subOne.setBackground(new java.awt.Color(24, 26, 28));
         subOne.setForeground(new java.awt.Color(24, 26, 28));
@@ -114,13 +186,13 @@ public class Bookings extends javax.swing.JFrame {
         });
         jPanel2.add(subOne, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 60, 70));
 
-        Adults.setEditable(false);
-        Adults.setBackground(new java.awt.Color(24, 26, 28));
-        Adults.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        Adults.setForeground(new java.awt.Color(255, 255, 255));
-        Adults.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Adults.setText("1");
-        jPanel2.add(Adults, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, 50));
+        adults.setEditable(false);
+        adults.setBackground(new java.awt.Color(24, 26, 28));
+        adults.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        adults.setForeground(new java.awt.Color(255, 255, 255));
+        adults.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        adults.setText("1");
+        jPanel2.add(adults, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, 50));
 
         addOne.setBackground(new java.awt.Color(24, 26, 28));
         addOne.setForeground(new java.awt.Color(24, 26, 28));
@@ -142,7 +214,7 @@ public class Bookings extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Adults");
+        jLabel5.setText("Adult(s)");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 60, 20));
 
         subOne1.setBackground(new java.awt.Color(24, 26, 28));
@@ -172,33 +244,61 @@ public class Bookings extends javax.swing.JFrame {
         });
         jPanel2.add(addOne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 60, 70));
 
-        Children.setEditable(false);
-        Children.setBackground(new java.awt.Color(24, 26, 28));
-        Children.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        Children.setForeground(new java.awt.Color(255, 255, 255));
-        Children.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Children.setText("0");
-        jPanel2.add(Children, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 60, 50));
+        children.setEditable(false);
+        children.setBackground(new java.awt.Color(24, 26, 28));
+        children.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        children.setForeground(new java.awt.Color(255, 255, 255));
+        children.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        children.setText("0");
+        jPanel2.add(children, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 60, 50));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Children");
+        jLabel6.setText("Child(ren)");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 60, 20));
 
-        checkin.setForeground(new java.awt.Color(255, 255, 255));
-        checkin.setEditable(false);
-        jPanel2.add(checkin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        checkIN.setBackground(new java.awt.Color(255, 255, 255));
+        checkIN.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        checkIN.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(checkIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 110, -1));
 
-        checkout.setForeground(new java.awt.Color(255, 255, 255));
-        checkout.setEditable(false);
-        jPanel2.add(checkout, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+        checkOUT.setBackground(new java.awt.Color(255, 255, 255));
+        checkOUT.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
+        checkOUT.setForeground(new java.awt.Color(0, 0, 0));
+        checkOUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkOUTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(checkOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 110, -1));
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(24, 26, 28));
+        jTextField1.setFont(new java.awt.Font("Dotum", 2, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("(dd/MM/yyyy)");
+        jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 90, -1));
+
+        jTextField3.setEditable(false);
+        jTextField3.setBackground(new java.awt.Color(24, 26, 28));
+        jTextField3.setFont(new java.awt.Font("Dotum", 2, 14)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField3.setText("(dd/MM/yyyy)");
+        jTextField3.setBorder(null);
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 660, 500));
 
         jLabel7.setBackground(new java.awt.Color(0, 162, 232));
         jLabel7.setFont(new java.awt.Font("Dotum", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(24, 26, 28));
-        jLabel7.setText("2/3  Reservations");
+        jLabel7.setText("2/4  Reservations");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 640));
@@ -207,18 +307,56 @@ public class Bookings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackbtnActionPerformed
-        // TODO add your handling code here:
-        Registration reg= new Registration();
-        reg.setVisible(true);
-        dispose();
+        try {
+           
+            Registration.setVisible(true);
+            this.setVisible(false);
+            
+        } catch (Exception ex) {
+         
+        }
         
     }//GEN-LAST:event_BackbtnActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-        // TODO add your handling code here:
-        Choose_room choose= new Choose_room();
+        try{
+        Adults=adults.getText();
+        Children=children.getText();
+        String Checkin=checkIN.getText();
+        String Checkout=checkOUT.getText();
+        
+        Calendar c= Calendar.getInstance();
+        c.add(Calendar.DATE, -1);
+        Date yesterday=c.getTime();
+        c.set(Calendar.YEAR,2020);
+         c.set(Calendar.MONTH,11);
+          c.set(Calendar.DAY_OF_MONTH,31);
+        Date max=c.getTime();
+        DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+        if(checkinValidation(Checkin)&&checkoutValidation(Checkout)&& checkin.after(yesterday)
+                && checkout.after(checkin)&& checkout.before(max)){
+        Choose_room choose= new Choose_room(name,num,Address,nextkin,nextkinNo,checkin,checkout,Adults,Children,this);
+        choose.setLocationRelativeTo(null);
         choose.setVisible(true);
-        dispose();
+       this.setVisible(false);  
+        }else{
+            if(!checkinValidation(Checkin))
+            JOptionPane.showMessageDialog(null, "Invalid  Check-IN Date");
+            if(!checkoutValidation(Checkout))
+            JOptionPane.showMessageDialog(null, "Invalid Check-OUT Date");
+            if(!checkout.after(checkin))
+             JOptionPane.showMessageDialog(null, "Invalid Check-OUT Date\n"
+                     + "Check-OUT is only after "+df.format(checkin)); 
+            if(!checkin.after(yesterday))
+             JOptionPane.showMessageDialog(null, "Invalid  Check-IN Date\n"
+                     + "Check-IN is only after "+df.format(yesterday));
+            if(!checkout.before(max))
+             JOptionPane.showMessageDialog(null, "Invalid  Check-OUT Date\n"
+                     + "maximum Check-OUT is "+df.format(max));
+        }
+        }catch(Exception e){
+        
+        } 
     }//GEN-LAST:event_NextActionPerformed
 
     private void addOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOneActionPerformed
@@ -231,24 +369,24 @@ public class Bookings extends javax.swing.JFrame {
 
     private void addOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOneMouseClicked
         // TODO add your handling code here:
-        String strAdults= Adults.getText();
+        String strAdults= adults.getText();
         int inAdults=Integer.parseInt(strAdults);
         if(evt.getSource()==addOne){
             if(inAdults<5){
                 inAdults++;
-                Adults.setText(""+inAdults);
+                adults.setText(""+inAdults);
             }else JOptionPane.showMessageDialog(rootPane, "Maximum number of Adults in a room is 5");
         }
     }//GEN-LAST:event_addOneMouseClicked
 
     private void subOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subOneMouseClicked
         // TODO add your handling code here:
-        String strAdults1=Adults.getText();
+        String strAdults1=adults.getText();
         int inAdults1=Integer.parseInt(strAdults1);
         if (evt.getSource()==subOne){
             if(inAdults1>1){
                 inAdults1--;
-                Adults.setText(""+inAdults1);
+                adults.setText(""+inAdults1);
             }else JOptionPane.showMessageDialog(rootPane, "There must be at least an adult in the room");
         }
     }//GEN-LAST:event_subOneMouseClicked
@@ -259,26 +397,38 @@ public class Bookings extends javax.swing.JFrame {
 
     private void addOne1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOne1MouseClicked
         // TODO add your handling code here:
-        String strChildren= Children.getText();
+        String strChildren= children.getText();
         int inChildren=Integer.parseInt(strChildren);
         if (evt.getSource()==addOne1){
             if(inChildren<5){
                 inChildren++;
-                Children.setText(""+inChildren);
+                children.setText(""+inChildren);
             }   else JOptionPane.showMessageDialog(rootPane, "Maximum number of Children in a room is 5");    
         }
     }//GEN-LAST:event_addOne1MouseClicked
 
     private void subOne1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subOne1MouseClicked
         // TODO add your handling code here:
-        String strChildren1= Children.getText();
+        String strChildren1= children.getText();
         int inChildren1=Integer.parseInt(strChildren1);
         if(evt.getSource()==subOne1);
             if(inChildren1>0){
              inChildren1--;
-             Children.setText(""+inChildren1);
+             children.setText(""+inChildren1);
             }  
     }//GEN-LAST:event_subOne1MouseClicked
+
+    private void checkOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkOUTActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+    }//GEN-LAST:event_formWindowOpened
 
     
     /**
@@ -317,14 +467,14 @@ public class Bookings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Adults;
     private javax.swing.JButton Backbtn;
-    private javax.swing.JTextField Children;
     private javax.swing.JButton Next;
     private javax.swing.JButton addOne;
     private javax.swing.JButton addOne1;
-    private org.jdesktop.swingx.JXDatePicker checkin;
-    private org.jdesktop.swingx.JXDatePicker checkout;
+    private javax.swing.JTextField adults;
+    private javax.swing.JTextField checkIN;
+    private javax.swing.JTextField checkOUT;
+    private javax.swing.JTextField children;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -334,7 +484,13 @@ public class Bookings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton subOne;
     private javax.swing.JButton subOne1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("akmaicon.png")));
+    }
 }

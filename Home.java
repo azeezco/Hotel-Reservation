@@ -13,6 +13,7 @@ import java.awt.Toolkit;
  */
 public class Home extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form Home
      */
@@ -44,23 +45,23 @@ public class Home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        facebookContact = new javax.swing.JLabel();
+        GmailContactt = new javax.swing.JLabel();
+        twitterContact = new javax.swing.JLabel();
+        instagramContact = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Akma Signatures");
+        setTitle("Akma Signatures Hotel");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 162, 232));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/Company_256.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/TowerImage.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
@@ -103,7 +104,7 @@ public class Home extends javax.swing.JFrame {
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 300, 10));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/phone (2).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/phone.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,17 +121,37 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 210, 50));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/facebook (2).png"))); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+        facebookContact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/facebook (2).png"))); // NOI18N
+        facebookContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                facebookContactMouseClicked(evt);
+            }
+        });
+        jPanel2.add(facebookContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/gmail.png"))); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
+        GmailContactt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/gmail.png"))); // NOI18N
+        GmailContactt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GmailContacttMouseClicked(evt);
+            }
+        });
+        jPanel2.add(GmailContactt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 40, 50));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/twitter.png"))); // NOI18N
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
+        twitterContact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/twitter.png"))); // NOI18N
+        twitterContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                twitterContactMouseClicked(evt);
+            }
+        });
+        jPanel2.add(twitterContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/instagram.png"))); // NOI18N
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
+        instagramContact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking/instagram.png"))); // NOI18N
+        instagramContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                instagramContactMouseClicked(evt);
+            }
+        });
+        jPanel2.add(instagramContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,11 +174,28 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Registration reg= new Registration ();
+        Registration reg= new Registration (this);
+        reg.setLocationRelativeTo(null);
          reg.setVisible(true);
-         dispose();
+         this.setVisible(false);
          
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void facebookContactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facebookContactMouseClicked
+       BrowserLaunch.openURL("https://www.facebook.com/azeezayotunde");
+    }//GEN-LAST:event_facebookContactMouseClicked
+
+    private void twitterContactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twitterContactMouseClicked
+        BrowserLaunch.openURL("https://www.twitter.com");
+    }//GEN-LAST:event_twitterContactMouseClicked
+
+    private void instagramContactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instagramContactMouseClicked
+       BrowserLaunch.openURL("https://www.instagram.com/heyz_man");
+    }//GEN-LAST:event_instagramContactMouseClicked
+
+    private void GmailContacttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GmailContacttMouseClicked
+       BrowserLaunch.openURL("https://mail.google.com/mail/?view=cm&fs=1&to=azeezco1@gmail.com&su=FEEDBACK&bcc=lawalazeez1111@gmail.com");
+    }//GEN-LAST:event_GmailContacttMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,12 +230,16 @@ public class Home extends javax.swing.JFrame {
                 try{
                     Thread.sleep(4500);
                 }catch(Exception e){}
-                new Home().setVisible(true);
+               Home home= new Home();
+               home.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GmailContactt;
+    private javax.swing.JLabel facebookContact;
+    private javax.swing.JLabel instagramContact;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -206,10 +248,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -219,6 +257,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel twitterContact;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {

@@ -5,22 +5,113 @@
  */
 package booking;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
 public class summary extends javax.swing.JFrame {
-
+    String name;
+    String num;
+    String Address;
+    String nextkin;
+    String nextkinNo;
+    Date Checkin;
+    Date Checkout;
+    String Adults;
+    String Children;
+    String roomType;
+    double Rate;
+    public double days;
+    JFrame Choose_room;
+    
+   private void saveToFile(){
+        JFileChooser choose=new JFileChooser();
+        int retval= choose.showSaveDialog(print);
+        if(retval == JFileChooser.APPROVE_OPTION){
+            File file=new File(choose.getSelectedFile()+".log");
+            if (file==null){
+            return;
+            }
+           // if (!file.getName().toLowerCase().endsWith(".pdf")){
+           //  file=new File(file.getParentFile(), file.getName() +".pdf");
+            //}
+            if(file!=null){
+              if(file.exists()){
+                  retval=JOptionPane.showConfirmDialog(this, "Replace existing flie?");
+                  while(retval==JOptionPane.NO_OPTION){
+                     retval=choose.showSaveDialog(this);
+                     if(retval==JFileChooser.APPROVE_OPTION){
+                        file=new File(choose.getSelectedFile()+".log");
+                         if(file.exists()){
+                  retval=JOptionPane.showConfirmDialog(this, "Replace existing flie?");
+                     }
+                  }
+              }
+                  if(retval==JOptionPane.YES_OPTION){
+                      
+                      try {
+           
+            new pdfBackGround(name,num,Address,Checkin,Checkout,Adults,Children,Rate,days,roomType,file).createpdf(name);
+            Desktop.getDesktop().open(file);
+        }catch (Exception e){
+            
+        }
+                      
+                  }return;
+              }
+                try {
+           
+            new pdfBackGround(name,num,Address,Checkin,Checkout,Adults,Children,Rate,days,roomType,file).createpdf(name);
+            Desktop.getDesktop().open(file);
+        }catch (Exception e){
+            
+        }
+            }
+             
+        }
+        
+        
+        
+        
+       
+    }
     /**
      * Creates new form summary
      */
     public summary() {
         initComponents();
         setIcon();
+        
     }
-
+    public summary(String name3,String number3,String Address3,String kin3,String kinNo3,Date Checkin2,
+                        Date Checkout2,String Adults2,String Children2,String room,double Rate1,JFrame choose_room){
+        name=name3;
+        num=number3;
+        Address=Address3;
+        nextkin=kin3;
+        nextkinNo=kinNo3;
+        Checkin=Checkin2;
+        Checkout=Checkout2;
+        Adults=Adults2;
+        Children=Children2;
+        roomType=room;
+        Rate=Rate1;
+        Choose_room=choose_room;
+        initComponents();
+        setIcon();
+        print.addActionListener(e -> saveToFile());
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +121,7 @@ public class summary extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -51,14 +143,22 @@ public class summary extends javax.swing.JFrame {
         adults1 = new javax.swing.JTextField();
         children1 = new javax.swing.JTextField();
         roomtype = new javax.swing.JTextField();
-        roomno = new javax.swing.JTextField();
+        nights = new javax.swing.JTextField();
         rate = new javax.swing.JTextField();
         fullname1 = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
+        print = new javax.swing.JButton();
+        terms = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Akma Signatures Hotel");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 162, 232));
@@ -124,7 +224,7 @@ public class summary extends javax.swing.JFrame {
         jLabel13.setBackground(new java.awt.Color(24, 26, 28));
         jLabel13.setFont(new java.awt.Font("Dotum", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 162, 232));
-        jLabel13.setText("ROOM NO :");
+        jLabel13.setText("NIGHTS :");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 140, 40));
 
         jLabel14.setBackground(new java.awt.Color(24, 26, 28));
@@ -138,21 +238,21 @@ public class summary extends javax.swing.JFrame {
         bill.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         bill.setForeground(new java.awt.Color(255, 255, 255));
         bill.setBorder(null);
-        jPanel2.add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 530, 40));
+        jPanel2.add(bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 430, 40));
 
         phone_no1.setEditable(false);
         phone_no1.setBackground(new java.awt.Color(24, 26, 28));
         phone_no1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         phone_no1.setForeground(new java.awt.Color(255, 255, 255));
         phone_no1.setBorder(null);
-        jPanel2.add(phone_no1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 440, 40));
+        jPanel2.add(phone_no1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 430, 40));
 
         address1.setEditable(false);
         address1.setBackground(new java.awt.Color(24, 26, 28));
         address1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         address1.setForeground(new java.awt.Color(255, 255, 255));
         address1.setBorder(null);
-        jPanel2.add(address1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 490, 40));
+        jPanel2.add(address1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 430, 40));
 
         checkin1.setEditable(false);
         checkin1.setBackground(new java.awt.Color(24, 26, 28));
@@ -164,61 +264,118 @@ public class summary extends javax.swing.JFrame {
                 checkin1ActionPerformed(evt);
             }
         });
-        jPanel2.add(checkin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 490, 40));
+        jPanel2.add(checkin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 430, 40));
 
         checkout1.setEditable(false);
         checkout1.setBackground(new java.awt.Color(24, 26, 28));
         checkout1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         checkout1.setForeground(new java.awt.Color(255, 255, 255));
         checkout1.setBorder(null);
-        jPanel2.add(checkout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 470, 40));
+        jPanel2.add(checkout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 430, 40));
 
         adults1.setEditable(false);
         adults1.setBackground(new java.awt.Color(24, 26, 28));
         adults1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         adults1.setForeground(new java.awt.Color(255, 255, 255));
         adults1.setBorder(null);
-        jPanel2.add(adults1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 490, 40));
+        jPanel2.add(adults1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 430, 40));
 
         children1.setEditable(false);
         children1.setBackground(new java.awt.Color(24, 26, 28));
         children1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         children1.setForeground(new java.awt.Color(255, 255, 255));
         children1.setBorder(null);
-        jPanel2.add(children1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 470, 40));
+        jPanel2.add(children1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 430, 40));
 
         roomtype.setEditable(false);
         roomtype.setBackground(new java.awt.Color(24, 26, 28));
         roomtype.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         roomtype.setForeground(new java.awt.Color(255, 255, 255));
         roomtype.setBorder(null);
-        jPanel2.add(roomtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 460, 40));
+        jPanel2.add(roomtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 430, 40));
 
-        roomno.setEditable(false);
-        roomno.setBackground(new java.awt.Color(24, 26, 28));
-        roomno.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        roomno.setForeground(new java.awt.Color(255, 255, 255));
-        roomno.setBorder(null);
-        jPanel2.add(roomno, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 480, 40));
+        nights.setEditable(false);
+        nights.setBackground(new java.awt.Color(24, 26, 28));
+        nights.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        nights.setForeground(new java.awt.Color(255, 255, 255));
+        nights.setBorder(null);
+        jPanel2.add(nights, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 430, 40));
 
         rate.setEditable(false);
         rate.setBackground(new java.awt.Color(24, 26, 28));
         rate.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         rate.setForeground(new java.awt.Color(255, 255, 255));
         rate.setBorder(null);
-        jPanel2.add(rate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 470, 40));
+        jPanel2.add(rate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 430, 40));
 
         fullname1.setEditable(false);
         fullname1.setBackground(new java.awt.Color(24, 26, 28));
         fullname1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         fullname1.setForeground(new java.awt.Color(255, 255, 255));
         fullname1.setBorder(null);
+        fullname1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         fullname1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fullname1ActionPerformed(evt);
             }
         });
-        jPanel2.add(fullname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 480, 40));
+        jPanel2.add(fullname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 430, 40));
+
+        back.setBackground(new java.awt.Color(0, 162, 232));
+        back.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        back.setForeground(new java.awt.Color(255, 255, 255));
+        back.setText("back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        back.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                backComponentHidden(evt);
+            }
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                backComponentShown(evt);
+            }
+        });
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 70, -1));
+
+        print.setBackground(new java.awt.Color(0, 162, 232));
+        print.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        print.setForeground(new java.awt.Color(255, 255, 255));
+        print.setText("Print");
+        print.setEnabled(false);
+        print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printActionPerformed(evt);
+            }
+        });
+        jPanel2.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 80, 30));
+
+        terms.setBackground(new java.awt.Color(24, 26, 28));
+        terms.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        terms.setForeground(new java.awt.Color(204, 204, 204));
+        terms.setText("i agree to all the terms and conditions");
+        terms.setActionCommand("");
+        terms.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                termsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                termsMouseExited(evt);
+            }
+        });
+        terms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                termsActionPerformed(evt);
+            }
+        });
+        jPanel2.add(terms, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 290, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 640, 550));
 
@@ -242,6 +399,72 @@ public class summary extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_fullname1ActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+       
+    }//GEN-LAST:event_backMouseClicked
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+         this.setVisible(false);
+        Choose_room.setVisible(true);
+       
+    }//GEN-LAST:event_backActionPerformed
+
+    private void termsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_termsActionPerformed
+       if(terms.isSelected()){
+           
+           print.setEnabled(true);
+       }else{
+           
+           print.setEnabled(false);
+       }
+    }//GEN-LAST:event_termsActionPerformed
+
+    private void backComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_backComponentHidden
+        
+    }//GEN-LAST:event_backComponentHidden
+
+    private void backComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_backComponentShown
+      
+    }//GEN-LAST:event_backComponentShown
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       fullname1.setText(name);
+      phone_no1.setText(num);
+       address1.setText(Address);
+       SimpleDateFormat dateFormatter=new SimpleDateFormat("EEEE, MMMM d, yyyy");
+       checkin1.setText(""+ dateFormatter.format(Checkin));
+       checkout1.setText(""+ dateFormatter.format(Checkout));
+       long diff=Checkout.getTime()-Checkin.getTime();
+       days=(diff/(1000*60*60*24));
+       int days1=(int)days;
+     
+       nights.setText(Integer.toString(days1));
+       adults1.setText(Adults);
+       children1.setText(Children);
+       roomtype.setText(roomType);
+       rate.setText("=N="+Rate);
+       bill.setText("=N="+(Rate*days));
+    }//GEN-LAST:event_formWindowOpened
+
+    private void termsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_termsMouseEntered
+        jDialog1.setLocationRelativeTo(null);
+        jDialog1.setSize(400, 300);
+        jDialog1.setVisible(true);
+        jDialog1.setTitle("AKMA HOTELS Terms and Conditions");
+    }//GEN-LAST:event_termsMouseEntered
+
+    private void termsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_termsMouseExited
+      jDialog1.setVisible(false);
+    }//GEN-LAST:event_termsMouseExited
+    
+
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
+           
+        
+        
+       
+    }//GEN-LAST:event_printActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,7 +492,7 @@ public class summary extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(summary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -281,11 +504,13 @@ public class summary extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address1;
     private javax.swing.JTextField adults1;
+    private javax.swing.JButton back;
     private javax.swing.JTextField bill;
     private javax.swing.JTextField checkin1;
     private javax.swing.JTextField checkout1;
     private javax.swing.JTextField children1;
     private javax.swing.JTextField fullname1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -300,10 +525,12 @@ public class summary extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField nights;
     private javax.swing.JTextField phone_no1;
+    private javax.swing.JButton print;
     private javax.swing.JTextField rate;
-    private javax.swing.JTextField roomno;
     private javax.swing.JTextField roomtype;
+    private javax.swing.JCheckBox terms;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
