@@ -37,7 +37,7 @@ public class summary extends javax.swing.JFrame {
         JFileChooser choose=new JFileChooser();
         int retval= choose.showSaveDialog(print);
         if(retval == JFileChooser.APPROVE_OPTION){
-            File file=new File(choose.getSelectedFile()+".log");
+            File file=new File(choose.getSelectedFile()+"");
             if (file==null){
             return;
             }
@@ -50,7 +50,7 @@ public class summary extends javax.swing.JFrame {
                   while(retval==JOptionPane.NO_OPTION){
                      retval=choose.showSaveDialog(this);
                      if(retval==JFileChooser.APPROVE_OPTION){
-                        file=new File(choose.getSelectedFile()+".log");
+                        file=new File(choose.getSelectedFile()+"");
                          if(file.exists()){
                   retval=JOptionPane.showConfirmDialog(this, "Replace existing flie?");
                      }
@@ -81,7 +81,7 @@ public class summary extends javax.swing.JFrame {
         
         
         
-        
+      Notification.setText("Your Resevation has been saved successfully!!!");
        
     }
     /**
@@ -150,6 +150,7 @@ public class summary extends javax.swing.JFrame {
         print = new javax.swing.JButton();
         terms = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        Notification = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Akma Signatures Hotel");
@@ -386,6 +387,13 @@ public class summary extends javax.swing.JFrame {
         jLabel1.setToolTipText("4/4 Reservation Summary");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, 40));
 
+        Notification.setEditable(false);
+        Notification.setBackground(new java.awt.Color(0, 162, 232));
+        Notification.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        Notification.setForeground(new java.awt.Color(255, 0, 0));
+        Notification.setBorder(null);
+        jPanel1.add(Notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 610, 430, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 680));
 
         pack();
@@ -502,6 +510,7 @@ public class summary extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Notification;
     private javax.swing.JTextField address1;
     private javax.swing.JTextField adults1;
     private javax.swing.JButton back;
