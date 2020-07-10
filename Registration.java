@@ -9,7 +9,9 @@ package booking;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,16 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class Registration extends javax.swing.JFrame {
      
+    Connection conn=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
     
     public JFrame Home;
-    public Boolean numberValidation1(String num1){
+    public Boolean numberValidation(String num1){
         
-        return num1.charAt(0)=='0' && (num1.charAt(1)=='7' || num1.charAt(1)=='8' || num1.charAt(1)=='9') && num1.length()==11 && num1.matches("[0-9]+"); 
-    }
-    public Boolean numberValidation2(String num2){
-        
-        return num2.charAt(0)=='0' && (num2.charAt(1)=='7' || num2.charAt(1)=='8' || num2.charAt(1)=='9') && num2.length()==11 && num2.matches("[0-9]+"); 
-    }
+        return num1.charAt(0)=='0' && (num1.charAt(1)=='7' || num1.charAt(1)=='8' || num1.charAt(1)=='9') && num1.length()==11 && num1.matches("[0-9]+");     }
     /**
      * Creates new form Registration
      */
@@ -34,13 +34,14 @@ public class Registration extends javax.swing.JFrame {
         
         initComponents();
         setIcon();
+       
             
     }
        public Registration(JFrame home) {
         Home=home;
         initComponents();
         setIcon();
-            
+        conn=DB_connect.connect_DB();
     }
     
     
@@ -214,24 +215,44 @@ public class Registration extends javax.swing.JFrame {
 
     private void NextbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextbtnActionPerformed
        
-        String name=fullname.getText();
+         String name=fullname.getText();
         String num=phone_no.getText();
         
         String Address=address.getText();
         String nextkin=kin.getText();
         String nextkinNo=kinNo.getText();
+        
+       
+       
     try {
-        if((numberValidation1(num))&&(numberValidation2(nextkinNo))){
+        if((numberValidation(num))&&(numberValidation(nextkinNo))){
+            
+            
+             
+              try{
+//            String sql="insert into REGISTER(NAME,PHONE_NO,ADDRESS,KIN_NAME,KIN_NO)values(?,?,?,?,?)";
+//            pst=conn.prepareStatement(sql);
+//            pst.setString(1, name);
+//            pst.setString(2, num);
+//            pst.setString(3, Address);
+//            pst.setString(4, nextkin);
+//            pst.setString(5, nextkinNo);
+//            pst.execute();
             
              Bookings book=new Bookings(name,num,Address,nextkin,nextkinNo,this);
              
              book.setLocationRelativeTo(null);
              book.setVisible(true);
              this.setVisible(false);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+             
         }else {
-            if(!numberValidation1(num))
+            if(!numberValidation(num))
             JOptionPane.showMessageDialog(null, "Invalid Phone number");
-            if(!numberValidation2(nextkinNo))
+            if(!numberValidation(nextkinNo))
             JOptionPane.showMessageDialog(null, "Invalid Next of kin number");
     }
     }catch(StringIndexOutOfBoundsException e){
@@ -245,9 +266,9 @@ public class Registration extends javax.swing.JFrame {
     
     private void CancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelbtnActionPerformed
         // TODO add your handling code here:
-     // Home Home=new Home();
-     // Home.setLocationRelativeTo(null);
-     // Home.setVisible(true);
+      Home Home=new Home();
+     Home.setLocationRelativeTo(null);
+     Home.setVisible(true);
     
       this.setVisible(false);
     }//GEN-LAST:event_CancelbtnActionPerformed
