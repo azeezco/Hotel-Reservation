@@ -34,9 +34,11 @@ public class pdfBackGround {
     double Rate;
     double days;
     File file;
-    public final String IMAGE="C:\\Users\\user\\Documents\\NetBeansProjects\\Hotel-Reservation\\src\\booking\\pdf-background.jpg";
+    public final String IMAGE="C:\\Users\\user\\Documents\\NetBeansProjects"
+            + "\\Hotel-Reservation\\src\\booking\\pdf-background.jpg";
     
-    public pdfBackGround(String name3,String num3,String address3,Date check_in,Date check_out,String adults3,String children3,double rate,double days1,String room,File file1){
+    public pdfBackGround(String name3,String num3,String address3,Date check_in,Date check_out,
+            String adults3,String children3,double rate,double days1,String room,File file1){
     name=name3;
     num=num3;
     Address=address3;
